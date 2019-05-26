@@ -44,7 +44,7 @@
 
             <Button
                 android:id="@+id/btn_sol"
-                android:layout_width="0dp"
+                android:layout_width="20dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:text="Sol"
@@ -52,8 +52,18 @@
                 android:textSize="20sp" />
 
             <Button
+                android:id="@+id/btn_dur"
+                android:layout_width="30dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:text="Dur"
+                android:textAllCaps="false"
+                android:textSize="20sp" />
+
+
+            <Button
                 android:id="@+id/btn_sag"
-                android:layout_width="0dp"
+                android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:text="Sag"

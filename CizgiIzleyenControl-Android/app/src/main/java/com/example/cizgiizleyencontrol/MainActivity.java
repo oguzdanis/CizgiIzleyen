@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private BluetoothSocket socket;
     private OutputStream outputStream;
 
-    Button ileri,geri,sag,sol,basla,baglan;
+    Button ileri,geri,sag,sol,basla,baglan,dur;
 
     String command;
 
@@ -37,11 +37,35 @@ public class MainActivity extends AppCompatActivity {
 
         basla = (Button)findViewById(R.id.btn_baslat);
         ileri = (Button)findViewById(R.id.btn_ileri);
+        dur = (Button)findViewById(R.id.btn_dur);
         sag = (Button)findViewById(R.id.btn_sag);
         sol = (Button)findViewById(R.id.btn_sol);
         geri = (Button)findViewById(R.id.btn_geri);
         baglan = (Button)findViewById(R.id.btn_baglan);
 
+
+        basla.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (event.getAction() == MotionEvent.ACTION_DOWN) //MotionEvent.ACTION_DOWN is when you hold a button down
+                {
+                    command = "basla";
+
+                    try
+                    {
+                        outputStream.write(command.getBytes()); //transmits the value of command to the bluetooth module
+                    }
+                    catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+
+                return false;
+            }
+
+        });
 
         //OnTouchListener code for the forward button (button long press)
         ileri.setOnTouchListener(new View.OnTouchListener() {
@@ -50,7 +74,30 @@ public class MainActivity extends AppCompatActivity {
 
                 if (event.getAction() == MotionEvent.ACTION_DOWN) //MotionEvent.ACTION_DOWN is when you hold a button down
                 {
-                    command = "mavi";
+                    command = "ileri";
+
+                    try
+                    {
+                        outputStream.write(command.getBytes()); //transmits the value of command to the bluetooth module
+                    }
+                    catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+
+                return false;
+            }
+
+        });
+
+        dur.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (event.getAction() == MotionEvent.ACTION_DOWN) //MotionEvent.ACTION_DOWN is when you hold a button down
+                {
+                    command = "dur";
 
                     try
                     {
@@ -74,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 if(event.getAction() == MotionEvent.ACTION_DOWN)
                 {
-                    command = "2";
+                    command = "geri";
 
                     try
                     {
@@ -98,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 if(event.getAction() == MotionEvent.ACTION_DOWN)
                 {
-                    command = "3";
+                    command = "sol";
 
                     try
                     {
@@ -121,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 if(event.getAction() == MotionEvent.ACTION_DOWN)
                 {
-                    command = "4";
+                    command = "sag";
 
                     try
                     {
@@ -136,6 +183,8 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+
 
         //Button that connects the device to the bluetooth module when pressed
         baglan.setOnClickListener(new View.OnClickListener() {
